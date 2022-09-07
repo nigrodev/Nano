@@ -18,9 +18,9 @@ To install this module on your server, just [click here](https://github.com/Nigr
 -- serverside only module
 require('nanofile')
 
-local dirs = Nano.ListDirectories("Packages")
+local dirs = File.GetDirectories("Packages")
 for i, dir in ipairs(dirs) do
-    local files = Nano.ListFiles("Packages/" .. dir)
+    local files = File.GetFiles("Packages/" .. dir)
     for i, file in ipairs(files) do
         Package.Log(file)
     end
