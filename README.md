@@ -5,9 +5,11 @@
 - Function that returns the **directories** of the specified path
 - Function that returns the **files** from the specified path
 
+Basically, they have two ways of returning, nil if the path passed is invalid, or a table with the string name of each file found.
+
 **Installation**
 
-To install this module on your server, just click here to download it and put the .dll in your server's Modules folder. Then just require it.
+To install this module on your server, just [click here](https://github.com/NigroSpider/Nano/releases/download/1.0/nanofile.dll) to download it and put the .dll in your server's Modules folder. Then just require it.
 ```Steam\steamapps\common\nanos-world\Server\Modules```
 
 **Examples**
