@@ -8,7 +8,7 @@ extern "C" {
 }
 
 
-int ListFiles(lua_State *L) {
+int GetFiles(lua_State *L) {
 
     std::string path = lua_tostring(L, 1);
 
@@ -34,7 +34,7 @@ int ListFiles(lua_State *L) {
     return 1;
 }
 
-int ListDirectories(lua_State *L) {
+int GetDirectories(lua_State *L) {
 
     std::string path = lua_tostring(L, 1);
 
@@ -69,17 +69,25 @@ int ListDirectories(lua_State *L) {
 extern "C" int luaopen_nanofile (lua_State *L) { 
 
     luaL_Reg nanofile[] = {
-        {"ListFiles", ListFiles},
-        {"ListDirectories", ListDirectories},
+        {"GetFiles", GetFiles},
+        {"GetDirectories", GetDirectories},
         {NULL, NULL}
     };
 
     lua_newtable(L);
 
+    lua_getglobal(L, "File");
+    lua_pushnil(L);
+    while (lua_next(L, -2) != 0) {
+        lua_pushvalue(L, -2);
+        lua_insert(L, -2);
+        lua_settable(L, -5);
+    }
+    lua_pop(L, 1);
+
     luaL_setfuncs(L, nanofile, 0);
 
-    lua_setglobal(L, "Nano");
-
+    lua_setglobal(L, "File");
 
     return 0;
 }
